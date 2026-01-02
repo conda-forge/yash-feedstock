@@ -9,7 +9,11 @@ fi
 export A2XFLAGS="--no-xmllint -v --xsltproc-opts=\"--maxdepth 1000000\" \
     --xsl-file=${BUILD_PREFIX}/share/docbook-xsl/manpages/docbook.xsl"
 
-./configure --prefix=${PREFIX}
+if [[ "${target_platform}" == "osx-arm64" ]]; then
+    ./configure --prefix=${PREFIX} --disable-nls
+else
+    ./configure --prefix=${PREFIX}
+fi
 
 pushd po
 make yash.pot
