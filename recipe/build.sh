@@ -18,7 +18,8 @@ fi
 pushd po
 make yash.pot
 msginit --no-translator -l en@boldquot -i yash.pot -o en@boldquot.po
-sed -i 's/charset=ASCII/charset=UTF-8/' en@boldquot.po
+sed -i.bak 's/charset=ASCII/charset=UTF-8/' en@boldquot.po
+rm en@boldquot.po.bak
 popd
 
 make -j${CPU_COUNT}
